@@ -1,0 +1,162 @@
+@import "../../styles/breakpoint";
+.main {
+  max-width: 1536px;
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  padding-inline: 10px;
+  svg {
+    display: block;
+    @include md {
+      display: none;
+    }
+  }
+  h3 {
+    cursor: pointer;
+  }
+  div {
+    display: none;
+    gap: 25px;
+    @include md {
+      display: flex;
+    }
+    button {
+      all: unset;
+      font-family: system-ui;
+      font-size: 32px;
+      font-weight: normal;
+      transition: all 0.3s;
+      cursor: pointer;
+      position: relative;
+      &:hover {
+        color: var(--primaryColor);
+        &::before {
+          transform: scale(1);
+        }
+      }
+      &::before {
+        content: "";
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        position: absolute;
+        background: var(--primaryColor);
+        transform: scale(0);
+        transform-origin: center;
+        transition: all 0.3s;
+      }
+    }
+    a {
+      all: unset;
+      font-family: system-ui;
+      font-size: 32px;
+      font-weight: normal;
+      transition: all 0.3s;
+      cursor: pointer;
+      position: relative;
+      &:hover {
+        color: var(--primaryColor);
+        &::before {
+          transform: scale(1);
+        }
+      }
+      &::before {
+        content: "";
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        position: absolute;
+        background: var(--primaryColor);
+        transform: scale(0);
+        transform-origin: center;
+        transition: all 0.3s;
+      }
+    }
+  }
+}
+
+.responsive {
+  &[data-show="true"] {
+    transform: translateY(0) scale(1);
+  }
+  display: flex;
+  transform: translateY(1000px) scale(0);
+  transform-origin: bottom;
+  transition: all 0.3s;
+  width: 100%;
+  position: fixed;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.21) !important;
+  z-index: 99;
+  button {
+    all: unset;
+    font-family: system-ui;
+    font-size: 48px;
+    font-weight: normal;
+    transition: all 0.3s;
+    cursor: pointer;
+    position: relative;
+    &:hover {
+      color: var(--primaryColor);
+      &::before {
+        transform: scale(1);
+      }
+    }
+    &::before {
+      content: "";
+      width: 100%;
+      height: 2px;
+      bottom: 0;
+      position: absolute;
+      background: var(--primaryColor);
+      transform: scale(0);
+      transform-origin: center;
+      transition: all 0.3s;
+    }
+  }
+  a {
+    all: unset;
+    font-family: system-ui;
+    font-size: 48px;
+    font-weight: normal;
+    transition: all 0.3s;
+    cursor: pointer;
+    position: relative;
+    &:hover {
+      color: var(--primaryColor);
+      &::before {
+        transform: scale(1);
+      }
+    }
+    &::before {
+      content: "";
+      width: 100%;
+      height: 2px;
+      bottom: 0;
+      position: absolute;
+      background: var(--primaryColor);
+      transform: scale(0);
+      transform-origin: center;
+      transition: all 0.3s;
+    }
+  }
+}
+
+.logo {
+  display: block !important;
+  position: relative;
+  height: 30px;
+  width: 120px;
+  cursor: pointer;
+}

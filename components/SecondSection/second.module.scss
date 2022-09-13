@@ -1,0 +1,42 @@
+@import "../../styles/breakpoint";
+
+.main {
+  margin-top: 200px;
+  margin-bottom: 200px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column-reverse;
+  gap: 40px;
+  @include md {
+    flex-direction: row;
+  }
+  [data-heading] {
+    max-width: calc(1200px / 2);
+    padding-left: 10px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+    @include md {
+      width: 50%;
+      padding-left: 10px;
+    }
+    @include xl {
+      width: 50%;
+      padding-left: 190px;
+    }
+  }
+}
+
+.image {
+  position: relative;
+  width: 100%;
+  height: 40vh;
+  @include md {
+    width: 50%;
+  }
+  @include xl {
+    height: 50vh;
+  }
+}

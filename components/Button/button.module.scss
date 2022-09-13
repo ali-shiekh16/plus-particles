@@ -1,0 +1,19 @@
+.button {
+  all: unset;
+  font-family: system-ui;
+  font-size: 28px;
+  font-weight: lighter;
+  border: 1px solid var(--primaryColor);
+  padding: 10px 30px;
+  border-radius: 999px;
+  width: fit-content;
+  color: var(--primaryColor);
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    background: var(--primaryColor);
+    border: 1px solid var(--accentColor);
+    color: var(--accentColor);
+    transform: scale(1.1);
+  }
+}

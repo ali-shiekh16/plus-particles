@@ -1,0 +1,14 @@
+.main {
+  max-width: 1200px;
+  padding: 10px;
+  margin-inline: auto;
+  height: 100vh;
+  display: flex;
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 80px;
+    gap: 40px;
+  }
+}
