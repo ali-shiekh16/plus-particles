@@ -51,29 +51,24 @@ const Logo = ({ refs }) => {
     const defaults = {
       toggleActions,
     };
-
     const defaults1 = {
-      start: '80% 73%',
-      end: '90% 73%',
-      trigger: refs[0].current,
+      duration: 1,
+      scrollTrigger: {
+        ...defaults,
+        start: '80% 73%',
+        end: '90% 73%',
+        trigger: refs[0].current,
+      },
     };
 
     gsap.to(logoRef.current.position, {
       x: -2,
-      duration: 1,
-      scrollTrigger: {
-        ...defaults,
-        ...defaults1,
-      },
+      ...defaults1,
     });
 
     gsap.to(logoRef.current.rotation, {
       y: Math.PI,
-      duration: 1,
-      scrollTrigger: {
-        ...defaults,
-        ...defaults1,
-      },
+      ...defaults1,
     });
 
     const materialRefs = [
@@ -97,7 +92,6 @@ const Logo = ({ refs }) => {
           ...defaults,
           start: 'top 73%',
           end: '10% 78%',
-          markers: true,
           trigger: refs[2].current,
         },
       })
@@ -110,6 +104,12 @@ const Logo = ({ refs }) => {
         ref.current.uPointer = new Vector2(x, y);
       });
     };
+
+    // const moveCamera = () => {
+    //   camera.position.x += (mouseX - camera.position.x) * 0.05;
+    //   camera.position.y += (-mouseY - camera.position.y) * 0.05;
+    //   camera.lookAt(scene.position);
+    // };
 
     window.addEventListener('mousemove', updateMousePosition);
     return () => {
