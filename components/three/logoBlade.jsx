@@ -22,7 +22,7 @@ const LogoBlade = forwardRef(({ pointsProps, shaderProps }, ref) => {
       vertices.push(tempPosition.x, tempPosition.y, tempPosition.z);
       randomness.push(
         (Math.random() - 0.5) * 10,
-        (Math.random() - 0.5) * 3,
+        (Math.random() - 0.5) * 5,
         (Math.random() - 0.5) * 8
       );
     }

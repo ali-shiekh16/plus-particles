@@ -53,13 +53,9 @@ const Logo = ({ refs }) => {
     };
 
     const defaults1 = {
-      start: 'top 73%',
-      end: 'top 32%',
-    };
-
-    const defaults2 = {
-      start: 'top 73%',
-      end: 'top 32%',
+      start: '80% 73%',
+      end: '90% 73%',
+      trigger: refs[0].current,
     };
 
     gsap.to(logoRef.current.position, {
@@ -68,7 +64,6 @@ const Logo = ({ refs }) => {
       scrollTrigger: {
         ...defaults,
         ...defaults1,
-        trigger: refs[1].current,
       },
     });
 
@@ -77,8 +72,7 @@ const Logo = ({ refs }) => {
       duration: 1,
       scrollTrigger: {
         ...defaults,
-        ...defaults2,
-        trigger: refs[1].current,
+        ...defaults1,
       },
     });
 
@@ -97,11 +91,13 @@ const Logo = ({ refs }) => {
 
     materialRefs.forEach(material =>
       gsap.to(material.current, {
-        uRandomness: 6,
+        uRandomness: 2.5,
         duration: 1,
         scrollTrigger: {
           ...defaults,
-          ...defaults2,
+          start: 'top 73%',
+          end: '10% 78%',
+          markers: true,
           trigger: refs[2].current,
         },
       })
@@ -127,7 +123,6 @@ const Logo = ({ refs }) => {
         ref={concealRef1}
         shaderProps={{
           ...shaderProps,
-          // uPointer: useMousePosition(),
           uTexture: window && loadTexture(),
           uAspect: window && getAspect(window),
         }}
@@ -136,7 +131,6 @@ const Logo = ({ refs }) => {
         ref={concealRef2}
         shaderProps={{
           ...shaderProps,
-          // uPointer: useMousePosition(),
           uTexture: window && loadTexture(),
           uAspect: window && getAspect(window),
         }}
@@ -146,7 +140,6 @@ const Logo = ({ refs }) => {
         ref={concealRef3}
         shaderProps={{
           ...shaderProps,
-          // uPointer: useMousePosition(),
           uTexture: window && loadTexture(),
           uAspect: window && getAspect(window),
         }}
@@ -156,7 +149,6 @@ const Logo = ({ refs }) => {
         ref={concealRef4}
         shaderProps={{
           ...shaderProps,
-          // uPointer: useMousePosition(),
           uTexture: window && loadTexture(),
           uAspect: window && getAspect(window),
         }}
@@ -169,7 +161,6 @@ const Logo = ({ refs }) => {
         }}
         shaderProps={{
           ...shaderProps,
-          // uPointer: useMousePosition(),
           uTexture: window && loadTexture(),
           uAspect: window && getAspect(window),
         }}
@@ -181,7 +172,6 @@ const Logo = ({ refs }) => {
         }}
         shaderProps={{
           ...shaderProps,
-          // uPointer: useMousePosition(),
           uTexture: window && loadTexture(),
           uAspect: window && getAspect(window),
         }}

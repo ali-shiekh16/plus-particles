@@ -38,7 +38,7 @@ const pointsShaderMaterial = shaderMaterial(
     vec4 modelPosition = modelMatrix * vec4(position, 1.0);
 
     if(uRandomness > 1.0) {
-      modelPosition.xyz += aRandom.xyz * uRandomness * 0.5;
+      modelPosition.xyz += aRandom.xyz * uRandomness;
     }
 
 
