@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useMemo, useState } from 'react';
 import * as THREE from 'three';
-import { extend } from '@react-three/fiber';
+import { extend, useFrame } from '@react-three/fiber';
 import useMousePosition from '../../hooks/useMouseMove';
 import PointsShaderMaterial from './shaders';
 import LogoBlade from './logoBlade';
@@ -46,11 +46,14 @@ const Logo = ({ refs }) => {
   const concealRef4b = useRef();
   const concealRef4 = useRef([concealRef4a, concealRef4b]);
 
+  const clockRef = useRef(new THREE.Clock());
+
   useEffect(() => {
     const toggleActions = 'restart continue reverse continue';
     const defaults = {
       toggleActions,
     };
+
     const defaults1 = {
       duration: 1,
       scrollTrigger: {
@@ -112,10 +115,30 @@ const Logo = ({ refs }) => {
     // };
 
     window.addEventListener('mousemove', updateMousePosition);
+
     return () => {
       window.removeEventListener('mousemove', updateMousePosition);
     };
   }, []);
+
+  useFrame(() => {
+    const time = clockRef.current.getElapsedTime();
+
+    const materialRefs = [
+      bladeRef1,
+      bladeRef2,
+      concealRef1a,
+      concealRef1b,
+      concealRef2a,
+      concealRef2b,
+      concealRef3a,
+      concealRef3b,
+      concealRef4a,
+      concealRef4b,
+    ];
+
+    materialRefs.forEach(ref => (ref.current.uTime = time));
+  });
 
   return (
     <group ref={logoRef} rotation={[0, 0, Math.PI / 6]}>

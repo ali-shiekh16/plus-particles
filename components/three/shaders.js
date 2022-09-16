@@ -23,6 +23,7 @@ const pointsShaderMaterial = shaderMaterial(
   // Vertex Shader
   `
 	attribute vec3 aRandom;
+	attribute vec3 aFloat;
   attribute vec3 color;
 
   uniform float uSize;
@@ -41,6 +42,13 @@ const pointsShaderMaterial = shaderMaterial(
       modelPosition.xyz += aRandom.xyz * uRandomness;
     }
 
+    float frequency = .5;
+    float amplitude = .05;
+
+    modelPosition.x += cos(uTime * aFloat.x * frequency) * amplitude;
+    modelPosition.y += cos(uTime * aFloat.y * frequency) * amplitude;
+    // modelPosition.z += cos(uTime * aFloat.z * frequency) * amplitude;
+
 
     vec4 viewPosition = viewMatrix * modelPosition;
     vec4 projectedPosition = projectionMatrix * viewPosition;
@@ -52,10 +60,15 @@ const pointsShaderMaterial = shaderMaterial(
     vec2 posUV = gl_Position.xy / gl_Position.w;
     vec2 mouse = uPointer;
     vec2 asp = vec2(uAspect, 1.0);
-    float d = distance(posUV * asp, mouse * asp) * 1.5;
+    float d = distance(posUV * asp, mouse * asp) * 3.0;
     vec4 col = vec4(1, 1, 1, 0.9);
 
-    vColor = d < 0.3 ? col : vec4(1, 0.6, 0, .9);
+    if(d < .3) {
+      vColor = col;
+    } else {
+      vColor = vec4(1, .6, 0, .9);
+    }
+    // vColor = d < 0.3 ? col : vec4(1, 0.6, 0, .9);
     vPosition = projectedPosition;
     
   }
