@@ -49,17 +49,13 @@ const Logo = ({ refs }) => {
   const clockRef = useRef(new THREE.Clock());
 
   useEffect(() => {
-    // !TEMP Code
-
     const tl = new gsap.timeline({
-      // duration: 3,
       scrollTrigger: {
         toggleActions: 'restart continue reverse continue',
         trigger: refs[0].current,
         start: 'top top',
         end: 'bottom bottom',
         scrub: 1,
-        markers: true,
       },
     });
 
@@ -102,70 +98,6 @@ const Logo = ({ refs }) => {
       )
     );
 
-    // materialRefs.forEach(material =>
-    //   gsap.to(material.current, {
-    //     uRandomness: 2.5,
-    //     duration: 1,
-    //     scrollTrigger: {
-    //       ...defaults,
-    //       start: 'top 73%',
-    //       end: '10% 78%',
-    //       trigger: refs[2].current,
-    //     },
-    //   })
-    // );
-    //  * OFFICAL CODE
-    // const toggleActions = 'restart continue reverse continue';
-    // const defaults = {
-    //   toggleActions,
-    // };
-
-    // const defaults1 = {
-    //   duration: 1,
-    //   scrollTrigger: {
-    //     ...defaults,
-    //     start: '80% 73%',
-    //     end: '90% 73%',
-    //     trigger: refs[0].current,
-    //   },
-    // };
-
-    // gsap.to(logoRef.current.position, {
-    //   x: -2,
-    //   ...defaults1,
-    // });
-
-    // gsap.to(logoRef.current.rotation, {
-    //   y: Math.PI,
-    //   ...defaults1,
-    // });
-
-    // const materialRefs = [
-    //   bladeRef1,
-    //   bladeRef2,
-    //   concealRef1a,
-    //   concealRef1b,
-    //   concealRef2a,
-    //   concealRef2b,
-    //   concealRef3a,
-    //   concealRef3b,
-    //   concealRef4a,
-    //   concealRef4b,
-    // ];
-
-    // materialRefs.forEach(material =>
-    //   gsap.to(material.current, {
-    //     uRandomness: 2.5,
-    //     duration: 1,
-    //     scrollTrigger: {
-    //       ...defaults,
-    //       start: 'top 73%',
-    //       end: '10% 78%',
-    //       trigger: refs[2].current,
-    //     },
-    //   })
-    // );
-
     const updateMousePosition = e => {
       let x = (e.clientX / window.innerWidth) * 2 - 1;
       let y = -(e.clientY / window.innerHeight) * 2 + 1;
@@ -201,7 +133,7 @@ const Logo = ({ refs }) => {
   });
 
   return (
-    <group ref={logoRef} rotation={[0, 0, Math.PI / 6]}>
+    <group ref={logoRef} rotation={[0, 0, Math.PI / 6]} scale={[1.2, 1.2, 1.2]}>
       <ConcealArm
         ref={concealRef1}
         shaderProps={{

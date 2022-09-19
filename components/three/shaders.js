@@ -46,8 +46,7 @@ const pointsShaderMaterial = shaderMaterial(
     float amplitude = .05;
 
     modelPosition.x += cos(uTime * aFloat.x * frequency) * amplitude;
-    modelPosition.y += cos(uTime * aFloat.y * frequency) * amplitude;
-    // modelPosition.z += cos(uTime * aFloat.z * frequency) * amplitude;
+    modelPosition.y += sin(uTime * aFloat.y * frequency) * amplitude;
 
 
     vec4 viewPosition = viewMatrix * modelPosition;
@@ -68,7 +67,6 @@ const pointsShaderMaterial = shaderMaterial(
     } else {
       vColor = vec4(1, .6, 0, .9);
     }
-    // vColor = d < 0.3 ? col : vec4(1, 0.6, 0, .9);
     vPosition = projectedPosition;
     
   }
