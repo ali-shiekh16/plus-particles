@@ -52,7 +52,7 @@ const Logo = ({ refs }) => {
     // !TEMP Code
 
     const tl = new gsap.timeline({
-      duration: 1,
+      // duration: 3,
       scrollTrigger: {
         toggleActions: 'restart continue reverse continue',
         trigger: refs[0].current,
@@ -70,6 +70,7 @@ const Logo = ({ refs }) => {
       },
       -1
     );
+
     tl.to(
       logoRef.current.rotation,
       {
@@ -91,6 +92,28 @@ const Logo = ({ refs }) => {
       concealRef4b,
     ];
 
+    materialRefs.forEach(material =>
+      tl.to(
+        material.current,
+        {
+          uRandomness: 2.5,
+        },
+        0
+      )
+    );
+
+    // materialRefs.forEach(material =>
+    //   gsap.to(material.current, {
+    //     uRandomness: 2.5,
+    //     duration: 1,
+    //     scrollTrigger: {
+    //       ...defaults,
+    //       start: 'top 73%',
+    //       end: '10% 78%',
+    //       trigger: refs[2].current,
+    //     },
+    //   })
+    // );
     //  * OFFICAL CODE
     // const toggleActions = 'restart continue reverse continue';
     // const defaults = {
