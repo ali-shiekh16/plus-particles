@@ -20,7 +20,7 @@ const Home = () => {
       >
         <Logo refs={[secRef1, secRef2, secRef3]} />
       </Canvas>
-      <Head>
+      {/* <Head>
         <title>Home Page</title>
       </Head>
       <section className='section' ref={secRef1}>
@@ -30,6 +30,17 @@ const Home = () => {
         <SecondSection />
       </section>
       <section className='section' ref={secRef3}>
+        <ThirdSection />
+      </section> */}
+
+      {/* TEMP CODE */}
+
+      <section className='section' ref={secRef1}>
+        <Head>
+          <title>Home Page</title>
+        </Head>
+        <Hero />
+        <SecondSection />
         <ThirdSection />
       </section>
     </>
