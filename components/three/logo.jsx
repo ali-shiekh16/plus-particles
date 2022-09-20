@@ -88,11 +88,23 @@ const Logo = ({ refs }) => {
       concealRef4b,
     ];
 
+    materialRefs.forEach(ref =>
+      gsap.from(ref.current, {
+        duration: 0.5,
+        uRandomness: 150,
+        ease: 'fade.in',
+      })
+    );
+
+    materialRefs.forEach(ref =>
+      gsap.from(ref.current, { duration: 1, uOpacity: 0, ease: 'fade.in' })
+    );
+
     materialRefs.forEach(material =>
       tl.to(
         material.current,
         {
-          uRandomness: 2.5,
+          uRandomness: 150,
         },
         0
       )

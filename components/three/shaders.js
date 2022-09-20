@@ -38,9 +38,12 @@ const pointsShaderMaterial = shaderMaterial(
   void main() {
     vec4 modelPosition = modelMatrix * vec4(position, 1.0);
 
-    if(uRandomness > 1.0) {
-      modelPosition.xyz += aRandom.xyz * uRandomness;
-    }
+    // if(uRandomness > 1.0) {
+      // modelPosition.xyz += aRandom.xyz * uRandomness;
+    // }
+
+    modelPosition.xyz += aRandom.xyz * .01 * uRandomness;
+
 
     float frequency = .5;
     float amplitude = .05;
@@ -82,8 +85,7 @@ const pointsShaderMaterial = shaderMaterial(
       vec2 uv = vec2(gl_PointCoord.x, 1.0 - gl_PointCoord.y);
       vec4 textureColor = texture2D(uTexture, uv);
 
-      gl_FragColor = vec4(textureColor.xyz * vColor.xyz, 1.0); 
-      // gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+      gl_FragColor = vec4(textureColor.xyz * vColor.xyz, uOpacity); 
     } 
 `
 );
