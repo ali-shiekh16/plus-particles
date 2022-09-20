@@ -8,6 +8,7 @@ import ConcealArm from './concealArm';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { Vector2 } from 'three';
+import BackgroundParticles from './background';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,6 +17,8 @@ extend({ PointsShaderMaterial });
 const shaderProps = {
   transparent: true,
   depthWrite: false,
+  alphaTest: 0.001,
+  depthTest: false,
   uOpacity: 1,
   uSize: 50,
   uRandomness: 1,
@@ -145,65 +148,78 @@ const Logo = ({ refs }) => {
   });
 
   return (
-    <group ref={logoRef} rotation={[0, 0, Math.PI / 6]} scale={[1.2, 1.2, 1.2]}>
-      <ConcealArm
-        ref={concealRef1}
+    <>
+      <BackgroundParticles
         shaderProps={{
           ...shaderProps,
           uTexture: window && loadTexture(),
           uAspect: window && getAspect(window),
         }}
       />
-      <ConcealArm
-        ref={concealRef2}
-        shaderProps={{
-          ...shaderProps,
-          uTexture: window && loadTexture(),
-          uAspect: window && getAspect(window),
-        }}
-        rotationZ={Math.PI}
-      />
-      <ConcealArm
-        ref={concealRef3}
-        shaderProps={{
-          ...shaderProps,
-          uTexture: window && loadTexture(),
-          uAspect: window && getAspect(window),
-        }}
-        rotationZ={Math.PI / 2}
-      />
-      <ConcealArm
-        ref={concealRef4}
-        shaderProps={{
-          ...shaderProps,
-          uTexture: window && loadTexture(),
-          uAspect: window && getAspect(window),
-        }}
-        rotationZ={-Math.PI / 2}
-      />
-      <LogoBlade
-        ref={bladeRef1}
-        pointsProps={{
-          rotation: [0, 0, Math.PI / 4],
-        }}
-        shaderProps={{
-          ...shaderProps,
-          uTexture: window && loadTexture(),
-          uAspect: window && getAspect(window),
-        }}
-      />
-      <LogoBlade
-        ref={bladeRef2}
-        pointsProps={{
-          rotation: [0, 0, -Math.PI / 4],
-        }}
-        shaderProps={{
-          ...shaderProps,
-          uTexture: window && loadTexture(),
-          uAspect: window && getAspect(window),
-        }}
-      />
-    </group>
+      <group
+        ref={logoRef}
+        rotation={[0, 0, Math.PI / 6]}
+        scale={[1.2, 1.2, 1.2]}
+      >
+        <ConcealArm
+          ref={concealRef1}
+          shaderProps={{
+            ...shaderProps,
+            uTexture: window && loadTexture(),
+            uAspect: window && getAspect(window),
+          }}
+        />
+        <ConcealArm
+          ref={concealRef2}
+          shaderProps={{
+            ...shaderProps,
+            uTexture: window && loadTexture(),
+            uAspect: window && getAspect(window),
+          }}
+          rotationZ={Math.PI}
+        />
+        <ConcealArm
+          ref={concealRef3}
+          shaderProps={{
+            ...shaderProps,
+            uTexture: window && loadTexture(),
+            uAspect: window && getAspect(window),
+          }}
+          rotationZ={Math.PI / 2}
+        />
+        <ConcealArm
+          ref={concealRef4}
+          shaderProps={{
+            ...shaderProps,
+            uTexture: window && loadTexture(),
+            uAspect: window && getAspect(window),
+          }}
+          rotationZ={-Math.PI / 2}
+        />
+        <LogoBlade
+          ref={bladeRef1}
+          pointsProps={{
+            rotation: [0, 0, Math.PI / 4],
+          }}
+          shaderProps={{
+            ...shaderProps,
+            uTexture: window && loadTexture(),
+            uAspect: window && getAspect(window),
+          }}
+        />
+        <LogoBlade
+          ref={bladeRef2}
+          pointsProps={{
+            rotation: [0, 0, -Math.PI / 4],
+          }}
+          shaderProps={{
+            ...shaderProps,
+            uTexture: window && loadTexture(),
+            uAspect: window && getAspect(window),
+          }}
+        />
+      </group>
+    </>
   );
 };
 

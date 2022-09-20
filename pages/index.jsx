@@ -30,24 +30,10 @@ const Home = () => {
         camera={{ position: [0, 0, 8] }}
         pixelratio={1}
       >
+        {/* <color attach='background' args={['white']} /> */}
         <Logo refs={[secRef1, secRef2, secRef3]} />
         <Rig />
       </Canvas>
-      {/* <Head>
-        <title>Home Page</title>
-      </Head>
-      <section className='section' ref={secRef1}>
-        <Hero />
-      </section>
-      <section className='section' ref={secRef2}>
-        <SecondSection />
-      </section>
-      <section className='section' ref={secRef3}>
-        <ThirdSection />
-      </section> */}
-
-      {/* TEMP CODE */}
-
       <section className='section' ref={secRef1}>
         <Head>
           <title>Home Page</title>

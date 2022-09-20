@@ -2,7 +2,6 @@ import React, { forwardRef } from 'react';
 import { extend } from '@react-three/fiber';
 import PointsShaderMaterial from './shaders';
 import ConcealerBox from './concealer';
-import { useRef } from 'react';
 
 extend({ PointsShaderMaterial });
 
