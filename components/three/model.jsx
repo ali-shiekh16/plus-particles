@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
 import { Float32BufferAttribute } from 'three';
 import * as THREE from 'three';
-import { MeshSurfaceSampler } from 'three/examples/jsm/math/meshsurfacesampler';
-import { GLTFLoader } from 'three/examples/jsm/loaders/gltfloader';
+// import { MeshSurfaceSampler } from 'three/examples/jsm/math/meshsurfacesampler';
+// import { GLTFLoader } from 'three/examples/jsm/loaders/gltfloader';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import PointsShaderMaterial from './shaders';
