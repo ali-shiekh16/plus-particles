@@ -3,20 +3,8 @@ import Head from 'next/head';
 import Hero from '../components/Hero/Hero';
 import SecondSection from '../components/SecondSection/SecondSection';
 import ThirdSection from '../components/ThirdSection/ThirdSection';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import Logo from '../components/three/logo';
-import * as THREE from 'three';
-
-function Rig() {
-  const { camera, mouse } = useThree();
-  const vec = new THREE.Vector3();
-  return useFrame(() =>
-    camera.position.lerp(
-      vec.set(mouse.x * 2, mouse.y * 1, camera.position.z),
-      0.2
-    )
-  );
-}
 
 const Home = () => {
   const secRef1 = useRef();
@@ -32,7 +20,6 @@ const Home = () => {
       >
         {/* <color attach='background' args={['white']} /> */}
         <Logo refs={[secRef1, secRef2, secRef3]} />
-        <Rig />
       </Canvas>
       <section className='section' ref={secRef1}>
         <Head>

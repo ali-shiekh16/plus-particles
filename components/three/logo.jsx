@@ -9,6 +9,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { Vector2 } from 'three';
 import BackgroundParticles from './background';
+import Model from './model';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,6 +30,10 @@ const loadTexture = () => new THREE.TextureLoader().load('/plus.png');
 const getAspect = window => window.innerWidth / window.innerHeight;
 
 const Logo = ({ refs }) => {
+  const modelRef1 = useRef();
+  const modelRef2 = useRef();
+  const modelRef = useRef([modelRef1, modelRef2]);
+
   const logoRef = useRef();
   const bladeRef1 = useRef();
   const bladeRef2 = useRef();
@@ -51,7 +56,23 @@ const Logo = ({ refs }) => {
 
   const clockRef = useRef(new THREE.Clock());
 
+  const materialRefs = [
+    bladeRef1,
+    bladeRef2,
+    concealRef1a,
+    concealRef1b,
+    concealRef2a,
+    concealRef2b,
+    concealRef3a,
+    concealRef3b,
+    concealRef4a,
+    concealRef4b,
+  ];
+
+  const allMaterialsRef = [...materialRefs, modelRef2];
+
   useEffect(() => {
+    // GSAP TIMELINE
     const tl = new gsap.timeline({
       scrollTrigger: {
         toggleActions: 'restart continue reverse continue',
@@ -78,19 +99,52 @@ const Logo = ({ refs }) => {
       -1
     );
 
-    const materialRefs = [
-      bladeRef1,
-      bladeRef2,
-      concealRef1a,
-      concealRef1b,
-      concealRef2a,
-      concealRef2b,
-      concealRef3a,
-      concealRef3b,
-      concealRef4a,
-      concealRef4b,
-    ];
+    materialRefs.forEach(material =>
+      tl.to(
+        material.current,
+        {
+          uRandomness: 150,
+        },
+        0
+      )
+    );
 
+    materialRefs.forEach(material =>
+      tl.to(
+        material.current,
+        {
+          uOpacity: 0,
+        },
+        1
+      )
+    );
+
+    tl.to(
+      modelRef2.current,
+      {
+        uOpacity: 1,
+        uRandomness: 0.1,
+      },
+      1
+    );
+
+    tl.to(
+      modelRef1.current.rotation,
+      {
+        y: Math.PI,
+      },
+      2
+    );
+
+    tl.to(
+      modelRef1.current.position,
+      {
+        x: -2,
+      },
+      2
+    );
+
+    // Fade in animation
     materialRefs.forEach(ref =>
       gsap.from(ref.current, {
         duration: 0.5,
@@ -103,21 +157,11 @@ const Logo = ({ refs }) => {
       gsap.from(ref.current, { duration: 1, uOpacity: 0, ease: 'fade.in' })
     );
 
-    materialRefs.forEach(material =>
-      tl.to(
-        material.current,
-        {
-          uRandomness: 150,
-        },
-        0
-      )
-    );
-
     const updateMousePosition = e => {
       let x = (e.clientX / window.innerWidth) * 2 - 1;
       let y = -(e.clientY / window.innerHeight) * 2 + 1;
-      materialRefs.forEach(ref => {
-        ref.current.uPointer = new Vector2(x, y);
+      allMaterialsRef.forEach(ref => {
+        if (ref.current) ref.current.uPointer = new Vector2(x, y);
       });
     };
 
@@ -142,13 +186,25 @@ const Logo = ({ refs }) => {
       concealRef3b,
       concealRef4a,
       concealRef4b,
+      modelRef2,
     ];
 
-    materialRefs.forEach(ref => (ref.current.uTime = time));
+    materialRefs.forEach(
+      ref => ref && ref.current && (ref.current.uTime = time)
+    );
   });
 
   return (
     <>
+      <Model
+        ref={modelRef}
+        shaderProps={{
+          ...shaderProps,
+          uTexture: window && loadTexture(),
+          uAspect: window && getAspect(window),
+        }}
+      />
+
       <BackgroundParticles
         shaderProps={{
           ...shaderProps,
@@ -156,6 +212,7 @@ const Logo = ({ refs }) => {
           uAspect: window && getAspect(window),
         }}
       />
+
       <group
         ref={logoRef}
         rotation={[0, 0, Math.PI / 6]}
