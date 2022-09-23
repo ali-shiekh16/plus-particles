@@ -115,7 +115,7 @@ const Logo = ({ refs }) => {
         {
           uOpacity: 0,
         },
-        1
+        0.85
       )
     );
 

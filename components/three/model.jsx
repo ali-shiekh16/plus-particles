@@ -54,7 +54,12 @@ const Model = forwardRef(({ pointsProps, shaderProps }, ref) => {
   return (
     <>
       {/* {vertices && ( */}
-      <points {...pointsProps} scale={[0.2, 0.2, 0.2]} ref={modelRef1}>
+      <points
+        {...pointsProps}
+        scale={[0.2, 0.2, 0.2]}
+        ref={modelRef1}
+        wireframe
+      >
         <bufferGeometry>
           <bufferAttribute
             attach='attributes-position'
