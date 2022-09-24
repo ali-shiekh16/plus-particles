@@ -139,7 +139,7 @@ const Logo = ({ refs }) => {
     tl.to(
       modelRef1.current.position,
       {
-        x: -2,
+        x: 2,
       },
       2
     );

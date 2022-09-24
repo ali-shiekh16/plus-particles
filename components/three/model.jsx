@@ -1,14 +1,14 @@
 import React, { forwardRef } from 'react';
 import { Float32BufferAttribute } from 'three';
-import * as THREE from 'three';
-// import { MeshSurfaceSampler } from 'three/examples/jsm/math/meshsurfacesampler';
-// import { GLTFLoader } from 'three/examples/jsm/loaders/gltfloader';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import PointsShaderMaterial from './shaders';
 import { extend } from '@react-three/fiber';
 import { useRef } from 'react';
 import * as modelData from './modelData';
+import * as THREE from 'three';
+// import { MeshSurfaceSampler } from 'three/examples/jsm/math/meshsurfacesampler';
+// import { GLTFLoader } from 'three/examples/jsm/loaders/gltfloader';
 
 extend({ PointsShaderMaterial });
 
@@ -19,7 +19,7 @@ const Model = forwardRef(({ pointsProps, shaderProps }, ref) => {
   // const [floats, setFloats] = useState();
 
   // useEffect(() => {
-  //   const pointsCount = 1000;
+  //   const pointsCount = 3000;
   //   const vertices = [];
   //   const randomness = [];
   //   const floats = [];
@@ -51,9 +51,14 @@ const Model = forwardRef(({ pointsProps, shaderProps }, ref) => {
   //   });
   // }, []);
 
+  // if (vertices && randomness && floats) {
+  //   console.log([...vertices.array], 'vertices');
+  //   console.log([...floats.array], 'floats');
+  //   console.log([...randomness.array], 'randomness');
+  // }
+
   return (
     <>
-      {/* {vertices && ( */}
       <points
         {...pointsProps}
         scale={[0.2, 0.2, 0.2]}
@@ -76,12 +81,12 @@ const Model = forwardRef(({ pointsProps, shaderProps }, ref) => {
         </bufferGeometry>
         <pointsShaderMaterial
           {...shaderProps}
+          blending={THREE.AdditiveBlending}
           ref={modelRef2}
           uOpacity={0}
           uRandomness={150}
         />
       </points>
-      {/* )} */}
     </>
   );
 });
