@@ -63,6 +63,7 @@ const Model = forwardRef(({ pointsProps, shaderProps }, ref) => {
         {...pointsProps}
         scale={[0.2, 0.2, 0.2]}
         ref={modelRef1}
+        position={[-3, 0, 0]}
         wireframe
       >
         <bufferGeometry>

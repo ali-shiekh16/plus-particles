@@ -24,6 +24,7 @@ const shaderProps = {
   uSize: 50,
   uRandomness: 1,
   uPointer: new Vector2(0, 0),
+  blending: THREE.AdditiveBlending,
 };
 
 const loadTexture = () => new THREE.TextureLoader().load('/plus.png');
@@ -86,7 +87,7 @@ const Logo = ({ refs }) => {
     tl.to(
       logoRef.current.position,
       {
-        x: -2,
+        x: -3,
       },
       -1
     );
@@ -216,7 +217,8 @@ const Logo = ({ refs }) => {
       <group
         ref={logoRef}
         rotation={[0, 0, Math.PI / 6]}
-        scale={[1.2, 1.2, 1.2]}
+        scale={[1.5, 1.5, 1.5]}
+        position={[2, 0, 0]}
       >
         <ConcealArm
           ref={concealRef1}
