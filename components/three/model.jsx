@@ -7,8 +7,11 @@ import { extend } from '@react-three/fiber';
 import { useRef } from 'react';
 import * as modelData from './modelData';
 import * as THREE from 'three';
+
 // import { MeshSurfaceSampler } from 'three/examples/jsm/math/meshsurfacesampler';
-// import { GLTFLoader } from 'three/examples/jsm/loaders/gltfloader';
+import { GLTFLoader } from 'three/examples/jsm/loaders/gltfloader';
+import { Suspense } from 'react';
+import { useLoader } from '@react-three/fiber';
 
 extend({ PointsShaderMaterial });
 
@@ -25,7 +28,7 @@ const Model = forwardRef(({ pointsProps, shaderProps }, ref) => {
   //   const floats = [];
   //   const temp = new THREE.Vector3();
 
-  //   new GLTFLoader().load('/hands.glb', ({ scene }) => {
+  // new GLTFLoader().load('/hands.glb', ({ scene }) => {
   //     const obj = scene.children[0];
   //     const sampler = new MeshSurfaceSampler(obj).build();
   //     for (let i = 0; i < pointsCount; i++) {
@@ -82,7 +85,7 @@ const Model = forwardRef(({ pointsProps, shaderProps }, ref) => {
         </bufferGeometry>
         <pointsShaderMaterial
           {...shaderProps}
-          blending={THREE.AdditiveBlending}
+          // blending={THREE.AdditiveBlending}
           ref={modelRef2}
           uOpacity={0}
           uRandomness={150}

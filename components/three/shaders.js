@@ -67,9 +67,10 @@ const pointsShaderMaterial = shaderMaterial(
 
     if(d < .3) {
       vColor = col;
+      modelPosition.x += 6.0;
     } else {
       vColor = vec4(1, .6, 0, .9);
-      // vColor = vec4(1, 0, 0, .9);
+      modelPosition.x += 6.0;
     }
     vPosition = projectedPosition;
     

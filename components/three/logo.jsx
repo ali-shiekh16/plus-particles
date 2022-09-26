@@ -10,7 +10,6 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { Vector2 } from 'three';
 import BackgroundParticles from './background';
 import Model from './model';
-
 gsap.registerPlugin(ScrollTrigger);
 
 extend({ PointsShaderMaterial });
@@ -21,10 +20,10 @@ const shaderProps = {
   alphaTest: 0.001,
   depthTest: false,
   uOpacity: 1,
-  uSize: 50,
+  uSize: 90,
   uRandomness: 1,
   uPointer: new Vector2(0, 0),
-  blending: THREE.AdditiveBlending,
+  // blending: THREE.AdditiveBlending,
 };
 
 const loadTexture = () => new THREE.TextureLoader().load('/plus.png');
