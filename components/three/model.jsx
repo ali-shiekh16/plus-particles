@@ -7,11 +7,8 @@ import { extend } from '@react-three/fiber';
 import { useRef } from 'react';
 import * as modelData from './modelData';
 import * as THREE from 'three';
-
 // import { MeshSurfaceSampler } from 'three/examples/jsm/math/meshsurfacesampler';
-import { GLTFLoader } from 'three/examples/jsm/loaders/gltfloader';
-import { Suspense } from 'react';
-import { useLoader } from '@react-three/fiber';
+// import { GLTFLoader } from 'three/examples/jsm/loaders/gltfloader';
 
 extend({ PointsShaderMaterial });
 
