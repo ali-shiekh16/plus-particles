@@ -30,8 +30,8 @@ const loadTexture = () => new THREE.TextureLoader().load('/plus.png');
 const getAspect = window => window.innerWidth / window.innerHeight;
 
 const Logo = ({ refs }) => {
-  const modelRef1 = useRef();
-  const modelRef2 = useRef();
+  const modelRef1 = useRef(); // Points
+  const modelRef2 = useRef(); // Material
   const modelRef = useRef([modelRef1, modelRef2]);
 
   const logoRef = useRef();
@@ -72,6 +72,7 @@ const Logo = ({ refs }) => {
   const allMaterialsRef = [...materialRefs, modelRef2];
 
   useEffect(() => {
+    modelRef1.current.rotation.set(Math.PI / 6, 0, 0);
     // GSAP TIMELINE
     const tl = new gsap.timeline({
       scrollTrigger: {
@@ -128,10 +129,13 @@ const Logo = ({ refs }) => {
       1
     );
 
-    tl.to(
+    tl.fromTo(
       modelRef1.current.rotation,
       {
-        y: Math.PI,
+        y: Math.PI / 2,
+      },
+      {
+        y: -Math.PI / 2,
       },
       2
     );

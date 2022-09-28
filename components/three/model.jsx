@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import PointsShaderMaterial from './shaders';
 import { extend } from '@react-three/fiber';
-import { useRef } from 'react';
 import * as modelData from './modelData';
 import * as THREE from 'three';
 // import { MeshSurfaceSampler } from 'three/examples/jsm/math/meshsurfacesampler';
@@ -14,6 +13,7 @@ extend({ PointsShaderMaterial });
 
 const Model = forwardRef(({ pointsProps, shaderProps }, ref) => {
   const [modelRef1, modelRef2] = ref.current;
+  //* Sampling model
   // const [vertices, setVertices] = useState();
   // const [randomness, setRandomness] = useState();
   // const [floats, setFloats] = useState();
@@ -25,7 +25,7 @@ const Model = forwardRef(({ pointsProps, shaderProps }, ref) => {
   //   const floats = [];
   //   const temp = new THREE.Vector3();
 
-  // new GLTFLoader().load('/hands.glb', ({ scene }) => {
+  //   new GLTFLoader().load('/phone.glb', ({ scene }) => {
   //     const obj = scene.children[0];
   //     const sampler = new MeshSurfaceSampler(obj).build();
   //     for (let i = 0; i < pointsCount; i++) {
@@ -56,14 +56,15 @@ const Model = forwardRef(({ pointsProps, shaderProps }, ref) => {
   //   console.log([...floats.array], 'floats');
   //   console.log([...randomness.array], 'randomness');
   // }
+  //* end of Sampling model
 
   return (
     <>
       <points
         {...pointsProps}
-        scale={[0.2, 0.2, 0.2]}
+        rotateZ={Math.PI / 6}
+        scale={[0.1, 0.1, 0.1]}
         ref={modelRef1}
-        position={[-3, 0, 0]}
         wireframe
       >
         <bufferGeometry>
@@ -82,7 +83,6 @@ const Model = forwardRef(({ pointsProps, shaderProps }, ref) => {
         </bufferGeometry>
         <pointsShaderMaterial
           {...shaderProps}
-          // blending={THREE.AdditiveBlending}
           ref={modelRef2}
           uOpacity={0}
           uRandomness={150}
