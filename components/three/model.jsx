@@ -6,6 +6,8 @@ import PointsShaderMaterial from './shaders';
 import { extend } from '@react-three/fiber';
 import * as modelData from './modelData';
 import * as THREE from 'three';
+
+//* Sampling model
 // import { MeshSurfaceSampler } from 'three/examples/jsm/math/meshsurfacesampler';
 // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
@@ -25,7 +27,7 @@ const Model = forwardRef(({ pointsProps, shaderProps }, ref) => {
   //   const floats = [];
   //   const temp = new THREE.Vector3();
 
-  //   new GLTFLoader().load('/phone.glb', ({ scene }) => {
+  //   new GLTFLoader().load('/hands.glb', ({ scene }) => {
   //     const obj = scene.children[0];
   //     const sampler = new MeshSurfaceSampler(obj).build();
   //     for (let i = 0; i < pointsCount; i++) {
@@ -58,15 +60,10 @@ const Model = forwardRef(({ pointsProps, shaderProps }, ref) => {
   // }
   //* end of Sampling model
 
+  const scale = 0.25;
   return (
     <>
-      <points
-        {...pointsProps}
-        rotateZ={Math.PI / 6}
-        scale={[0.1, 0.1, 0.1]}
-        ref={modelRef1}
-        wireframe
-      >
+      <points {...pointsProps} scale={[scale, scale, scale]} ref={modelRef1}>
         <bufferGeometry>
           <bufferAttribute
             attach='attributes-position'

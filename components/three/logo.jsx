@@ -72,7 +72,6 @@ const Logo = ({ refs }) => {
   const allMaterialsRef = [...materialRefs, modelRef2];
 
   useEffect(() => {
-    modelRef1.current.rotation.set(Math.PI / 6, 0, 0);
     // GSAP TIMELINE
     const tl = new gsap.timeline({
       scrollTrigger: {
@@ -95,7 +94,7 @@ const Logo = ({ refs }) => {
     tl.to(
       logoRef.current.rotation,
       {
-        y: Math.PI,
+        y: Math.PI / 2,
       },
       -1
     );
@@ -129,24 +128,10 @@ const Logo = ({ refs }) => {
       1
     );
 
-    tl.fromTo(
-      modelRef1.current.rotation,
-      {
-        y: Math.PI / 2,
-      },
-      {
-        y: -Math.PI / 2,
-      },
-      2
-    );
+    tl.to(modelRef1.current.rotation, { y: Math.PI / 6 }, 2);
+    tl.fromTo(modelRef1.current.position, { x: -3 }, { x: 5 }, 2);
 
-    tl.to(
-      modelRef1.current.position,
-      {
-        x: 2,
-      },
-      2
-    );
+    tl.to(modelRef1.current.position, {}, 4);
 
     // Fade in animation
     materialRefs.forEach(ref =>
@@ -220,7 +205,7 @@ const Logo = ({ refs }) => {
       <group
         ref={logoRef}
         rotation={[0, 0, Math.PI / 6]}
-        scale={[1.5, 1.5, 1.5]}
+        scale={[1.8, 1.8, 1.8]}
         position={[2, 0, 0]}
       >
         <ConcealArm
