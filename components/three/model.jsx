@@ -80,6 +80,7 @@ const Model = forwardRef(({ pointsProps, shaderProps }, ref) => {
         </bufferGeometry>
         <pointsShaderMaterial
           {...shaderProps}
+          depthWrite={false}
           ref={modelRef2}
           uOpacity={0}
           uRandomness={150}

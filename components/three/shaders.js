@@ -84,8 +84,10 @@ const pointsShaderMaterial = shaderMaterial(
     varying vec4 vPosition;
     varying vec4 vColor;
     void main() {	
+
       vec2 uv = vec2(gl_PointCoord.x, 1.0 - gl_PointCoord.y);
       vec4 textureColor = texture2D(uTexture, uv);
+      if(textureColor.a < .5) discard;
 
       gl_FragColor = vec4(textureColor.xyz * vColor.xyz, uOpacity); 
     } 

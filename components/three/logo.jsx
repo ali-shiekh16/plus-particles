@@ -17,16 +17,13 @@ extend({ PointsShaderMaterial });
 const shaderProps = {
   transparent: true,
   depthWrite: false,
-  alphaTest: 0.001,
-  depthTest: false,
   uOpacity: 0.9,
-  uSize: 85,
+  uSize: 170,
   uRandomness: 1,
   uPointer: new Vector2(0, 0),
-  // blending: THREE.AdditiveBlending,
 };
 
-const loadTexture = () => new THREE.TextureLoader().load('/plus.png');
+const loadTexture = () => new THREE.TextureLoader().load('/plus1.png');
 const getAspect = window => window.innerWidth / window.innerHeight;
 
 const Logo = ({ refs }) => {
