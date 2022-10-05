@@ -7,7 +7,7 @@ import LogoBlade from './logoBlade';
 import ConcealArm from './concealArm';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { Vector2 } from 'three';
+import { Vector2, Vector3 } from 'three';
 import BackgroundParticles from './background';
 import Model from './model';
 gsap.registerPlugin(ScrollTrigger);
@@ -158,7 +158,8 @@ const Logo = ({ refs }) => {
     };
   }, []);
 
-  useFrame(() => {
+  const prevPosition = new THREE.Vector2();
+  useFrame(state => {
     const time = clockRef.current.getElapsedTime();
 
     const materialRefs = [
@@ -174,6 +175,14 @@ const Logo = ({ refs }) => {
       concealRef4b,
       modelRef2,
     ];
+
+    const { camera, clock, mouse } = state;
+
+    if (camera && mouse.x !== prevPosition.x) {
+      camera.position.x = -Math.sin(clock.getElapsedTime()) * mouse.x * 0.3;
+      camera.position.y = Math.sin(clock.getElapsedTime()) * mouse.y * 0.3;
+      prevPosition.set(mouse.x, mouse.y);
+    }
 
     materialRefs.forEach(
       ref => ref && ref.current && (ref.current.uTime = time)
@@ -191,13 +200,7 @@ const Logo = ({ refs }) => {
         }}
       />
 
-      <BackgroundParticles
-        shaderProps={{
-          ...shaderProps,
-          uTexture: window && loadTexture(),
-          uAspect: window && getAspect(window),
-        }}
-      />
+      <BackgroundParticles />
 
       <group
         ref={logoRef}

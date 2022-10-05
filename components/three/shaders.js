@@ -34,6 +34,7 @@ const pointsShaderMaterial = shaderMaterial(
 
   varying vec4 vPosition;
   varying vec4 vColor;
+  varying float vDistance;
 
   void main() {
     vec4 modelPosition = modelMatrix * vec4(position, 1.0);
@@ -63,33 +64,37 @@ const pointsShaderMaterial = shaderMaterial(
     vec2 mouse = uPointer;
     vec2 asp = vec2(uAspect, 1.0);
     float d = distance(posUV * asp, mouse * asp) * 3.0;
-    vec4 col = vec4(1, 1, 1, 0.9);
 
-    if(d < .3) {
-      vColor = col;
-      modelPosition.x += 6.0;
-    } else {
-      vColor = vec4(1, .6, 0, .9);
-      modelPosition.x += 6.0;
-    }
+    if(d < .5) vColor = vec4(1, 1, 1, 0.9);
+    else vColor = vec4(1, .6, 0, .9); 
+
+    vDistance = d;
+
     vPosition = projectedPosition;
-    
   }
 `,
   // Fragment Shader
   `
     uniform sampler2D uTexture;
     uniform float uOpacity;
+    uniform vec3 uColor;
 
     varying vec4 vPosition;
     varying vec4 vColor;
+    varying float vDistance;
+
     void main() {	
 
       vec2 uv = vec2(gl_PointCoord.x, 1.0 - gl_PointCoord.y);
       vec4 textureColor = texture2D(uTexture, uv);
-      if(textureColor.a < .5) discard;
+      if(textureColor.a < .4) discard;
 
-      gl_FragColor = vec4(textureColor.xyz * vColor.xyz, uOpacity); 
+      float lerpWeight = vDistance / .6 ;
+      vec3 color = mix(vColor.xyz, vec3(1, .6, 0), lerpWeight);
+      // !Temp code
+      // vec3 color = mix(vColor.xyz, uColor.rgb, lerpWeight);
+
+      gl_FragColor = vec4(textureColor.xyz * color, uOpacity); 
     } 
 `
 );
