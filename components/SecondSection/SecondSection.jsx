@@ -1,6 +1,6 @@
-import Button from "../Button/Button";
-import style from "./second.module.scss";
-import Image from "next/image";
+import Button from '../Button/Button';
+import style from './second.module.scss';
+import Image from 'next/image';
 
 const SecondSection = () => {
   return (
@@ -20,10 +20,10 @@ const SecondSection = () => {
         </div>
         <div className={style.image}>
           <Image
-            src="/images/second.jpg"
-            objectFit="cover"
-            layout="fill"
-            alt="second"
+            src='/images/second.jpg'
+            objectFit='cover'
+            layout='fill'
+            alt='second'
           />
         </div>
       </div>

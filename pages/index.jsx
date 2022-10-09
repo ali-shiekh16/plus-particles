@@ -38,8 +38,6 @@ const canvasStyle = {
   top: 0,
   left: 0,
   outline: 'none',
-  // zIndex: '-1',
-  // pointerEvents: 'none',
 };
 
 export default Home;

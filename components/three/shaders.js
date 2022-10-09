@@ -39,12 +39,8 @@ const pointsShaderMaterial = shaderMaterial(
   void main() {
     vec4 modelPosition = modelMatrix * vec4(position, 1.0);
 
-    // if(uRandomness > 1.0) {
-      // modelPosition.xyz += aRandom.xyz * uRandomness;
-    // }
 
     modelPosition.xyz += aRandom.xyz * .01 * uRandomness;
-
 
     float frequency = .5;
     float amplitude = .05;
@@ -55,18 +51,23 @@ const pointsShaderMaterial = shaderMaterial(
 
     vec4 viewPosition = viewMatrix * modelPosition;
     vec4 projectedPosition = projectionMatrix * viewPosition;
-    gl_Position = projectedPosition;
+
+    float distanceToMouse = 1.0 - clamp(length(uPointer.y - modelPosition.y), -0.5, 1.0);
+    modelPosition.z += distanceToMouse * 2.0;
 
     gl_PointSize = uSize;
     gl_PointSize *= (1.0 / -viewPosition.z);
 
-    vec2 posUV = gl_Position.xy / gl_Position.w;
+    vec2 posUV = projectedPosition.xy / projectedPosition.w;
     vec2 mouse = uPointer;
     vec2 asp = vec2(uAspect, 1.0);
     float d = distance(posUV * asp, mouse * asp) * 3.0;
 
+    float lerpWeight = d / .6 ;
     if(d < .5) vColor = vec4(1, 1, 1, 0.9);
     else vColor = vec4(1, .6, 0, .9); 
+
+    gl_Position = projectedPosition;
 
     vDistance = d;
 

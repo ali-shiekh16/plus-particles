@@ -18,7 +18,7 @@ const shaderProps = {
   transparent: true,
   depthWrite: false,
   uOpacity: 0.9,
-  uSize: 170,
+  uSize: 150,
   uRandomness: 1,
   uPointer: new Vector2(0, 0),
 };

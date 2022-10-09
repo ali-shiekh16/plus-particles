@@ -36,10 +36,10 @@ function BackgroundParticles() {
     return [positionAttribute, colorAttribute];
   }, []);
 
-  const colorMap = useLoader(TextureLoader, '/plus1-min.png');
+  const colorMap = useLoader(TextureLoader, '/plus.png');
 
   return (
-    <points>
+    <points position={[0, 0, -5]}>
       <bufferGeometry>
         <bufferAttribute attach={'attributes-position'} {...points[0]} />
         <bufferAttribute attach={'attributes-color'} {...points[1]} />
